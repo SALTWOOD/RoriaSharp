@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="RoriaSharp/App.axaml" value="RoriaSharp/RoriaSharp.csproj" />
+        <entry key="RoriaSharp/Views/MainWindow.axaml" value="RoriaSharp/RoriaSharp.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
