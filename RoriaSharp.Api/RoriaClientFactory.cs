@@ -7,10 +7,13 @@ namespace RoriaSharp.Api;
 
 public static class RoriaClientFactory
 {
-    public static ApiClient Create(string baseUrl, HttpClient? httpClient = null)
+    public static ApiClient Create(string baseUrl, Func<Task<string?>> tokenResolver, HttpClient? httpClient = null)
     {
-        // TODO: Pass token here
-        var authProvider = new AnonymousAuthenticationProvider();
+        // Pass token here
+        var tokenProvider = new RoriaTokenProvider(tokenResolver);
+        
+        // Initialize provider
+        var authProvider = new BaseBearerTokenAuthenticationProvider(tokenProvider);
         
         // Initialize adapter
         var adapter = new HttpClientRequestAdapter(authProvider, httpClient: httpClient)
