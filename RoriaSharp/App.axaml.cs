@@ -52,7 +52,11 @@ public partial class App : Application
             );
         });
 
-        // Register ViewModels and Views
+        // Register Page ViewModels (Singleton to preserve state)
+        services.AddSingleton<HomeViewModel>();
+        services.AddSingleton<TunnelsViewModel>();
+
+        // Register Main ViewModel and Window
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<MainWindow>();
 

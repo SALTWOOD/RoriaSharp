@@ -3,15 +3,91 @@
         xmlns:vm="using:RoriaSharp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:ui="using:FluentAvalonia.UI.Controls"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
         x:Class="RoriaSharp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="RoriaSharp">
+        Title="RoriaSharp"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        TransparencyLevelHint="AcrylicBlur">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Title Bar -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+                Height="40"
+                x:Name="TitleBar">
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+                <!-- Icon and Title -->
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal"
+                            Margin="10,0,0,0"
+                            Spacing="10">
+                    <Image Source="/Assets/avalonia-logo.ico"
+                           Width="18"
+                           Height="18"
+                           VerticalAlignment="Center"/>
+                    <TextBlock Text="RoriaSharp"
+                               VerticalAlignment="Center"
+                               FontWeight="SemiBold"/>
+                </StackPanel>
+                
+                <!-- Windows Controlling -->
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
+                            Spacing="0">
+                    <Button Content="─"
+                            Width="46"
+                            Height="40"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="OnMinimizeClick"/>
+                    <Button Content="✕"
+                            Width="46"
+                            Height="40"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="OnCloseClick"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Body -->
+        <Grid Grid.Row="1">
+            <ui:NavigationView x:Name="NavView"
+                              IsBackButtonVisible="False"
+                              IsSettingsVisible="True"
+                              PaneDisplayMode="Left"
+                              OpenPaneLength="220"
+                              CompactModeThresholdWidth="0"
+                              ExpandedModeThresholdWidth="0">
+
+                <ui:NavigationView.MenuItems>
+                    <ui:NavigationViewItem Content="首页" Tag="Home">
+                        <ui:NavigationViewItem.IconSource>
+                            <ui:SymbolIconSource Symbol="Home"/>
+                        </ui:NavigationViewItem.IconSource>
+                    </ui:NavigationViewItem>
+                    <ui:NavigationViewItem Content="隧道管理" Tag="Tunnels">
+                        <ui:NavigationViewItem.IconSource>
+                            <ui:SymbolIconSource Symbol="Globe"/>
+                        </ui:NavigationViewItem.IconSource>
+                    </ui:NavigationViewItem>
+                </ui:NavigationView.MenuItems>
+
+                <ui:NavigationView.Content>
+                    <Border Margin="20,10">
+                        <ContentControl Content="{Binding CurrentPage}"/>
+                    </Border>
+                </ui:NavigationView.Content>
+            </ui:NavigationView>
+        </Grid>
+    </Grid>
 </Window>

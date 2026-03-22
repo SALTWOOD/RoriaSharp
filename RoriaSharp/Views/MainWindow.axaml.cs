@@ -1,19 +1,36 @@
-using System;
+using System.Linq;
+using Avalonia;
 using Avalonia.Controls;
+using FluentAvalonia.UI.Controls;
 using RoriaSharp.ViewModels;
 
 namespace RoriaSharp.Views;
 
 public partial class MainWindow : Window
 {
-    internal MainWindow()
-    {
-        throw new NotImplementedException("Default constructor should never be called");
-    }
-    
-    public MainWindow(MainWindowViewModel viewModel)
+    public MainWindow()
     {
         InitializeComponent();
-        DataContext = viewModel;
+        this.AttachDevTools();
+        
+        // 设置自定义标题栏拖拽区域
+        ExtendClientAreaTitleBarHeightHint = -1;
+    }
+
+    private void OnMinimizeClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
+    }
+
+    private void OnMaximizeClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        WindowState = WindowState == WindowState.Maximized 
+            ? WindowState.Normal 
+            : WindowState.Maximized;
+    }
+
+    private void OnCloseClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        Close();
     }
 }

@@ -4,7 +4,10 @@
     <option name="projectPerEditor">
       <map>
         <entry key="RoriaSharp/App.axaml" value="RoriaSharp/RoriaSharp.csproj" />
+        <entry key="RoriaSharp/Views/HomeView.axaml" value="RoriaSharp/RoriaSharp.csproj" />
         <entry key="RoriaSharp/Views/MainWindow.axaml" value="RoriaSharp/RoriaSharp.csproj" />
+        <entry key="RoriaSharp/Views/SettingsView.axaml" value="RoriaSharp/RoriaSharp.csproj" />
+        <entry key="RoriaSharp/Views/TunnelsView.axaml" value="RoriaSharp/RoriaSharp.csproj" />
       </map>
     </option>
   </component>

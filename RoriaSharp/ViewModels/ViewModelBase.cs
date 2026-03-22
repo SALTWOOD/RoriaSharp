@@ -2,6 +2,6 @@
 
 namespace RoriaSharp.ViewModels;
 
-public abstract class ViewModelBase : ObservableObject
+public partial class ViewModelBase : ObservableObject
 {
 }
